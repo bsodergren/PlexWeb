@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\VideoDetailsRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\VideoDetailsRepository;
 
 #[ORM\Entity(repositoryClass: VideoDetailsRepository::class)]
 class VideoDetails
@@ -43,8 +44,9 @@ class VideoDetails
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $keyword = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $video_filesize = null;
+    
+    #[ORM\Column(type: Types::BIGINT)]
+    private ?string $video_filesize = '0';
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $thumbnail = null;
@@ -180,12 +182,12 @@ class VideoDetails
         return $this;
     }
 
-    public function getVideoFilesize(): ?int
+    public function getVideoFilesize(): ?string
     {
         return $this->video_filesize;
     }
 
-    public function setVideoFilesize(?int $video_filesize): static
+    public function setVideoFilesize(?string $video_filesize): static
     {
         $this->video_filesize = $video_filesize;
 

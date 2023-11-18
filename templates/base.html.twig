@@ -3,6 +3,20 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <script src="https://10.0.0.101/plex/assets/layouts/external/js/popper.min.js"></script>
+<script src="https://10.0.0.101/plex/assets/layouts/external/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://10.0.0.101/plex/assets/layouts/external/css/bootstrap.min.css">
+
+<script src="https://10.0.0.101/plex/assets/layouts/external/js/jquery.min.js"></script>
+<script src="https://10.0.0.101/plex/assets/layouts/external/js/jquery.editable.min.js"></script>
+
+<script src="https://10.0.0.101/plex/assets/layouts/js/app.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+
+<!--
+    <link rel="stylesheet" href=""https://10.0.0.101/plex/assets/layouts/css/app.css">
+    -->    <link rel="stylesheet" href="https://10.0.0.101/plex/assets/layouts/css/fileinfo.css">
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {% block stylesheets %}
         {% endblock %}
@@ -11,6 +25,8 @@
         {% endblock %}
     </head>
     <body>
+    <a href="{{ path('grid') }}">Homepage</a>
+
         {% block body %}{% endblock %}
     </body>
 </html>

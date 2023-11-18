@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\VideoDetails;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Tools\Pagination\Paginator;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<VideoDetails>
@@ -16,11 +17,27 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class VideoDetailsRepository extends ServiceEntityRepository
 {
+ 
+    
+    public const PAGINATOR_PER_PAGE = 2;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, VideoDetails::class);
     }
+    public function getVideoListPaginator(string $library, int $offset): Paginator
+    {
+        $query = $this->createQueryBuilder('v')
+            ->andWhere('v.library = :library')
+            ->setParameter('library', $library)
+            ->orderBy('v.title', 'DESC')
+            ->setMaxResults(self::PAGINATOR_PER_PAGE)
+            ->setFirstResult($offset)
+            ->getQuery()
+        ;
 
+        return new Paginator($query);
+    }
 //    /**
 //     * @return VideoDetails[] Returns an array of VideoDetails objects
 //     */

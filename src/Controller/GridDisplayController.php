@@ -13,11 +13,11 @@ class GridDisplayController extends AbstractController
     #[Route('/grid/display', name: 'app_grid_display')]
     public function index(EntityManagerInterface $entityManager): Response
     {
-        $product = $entityManager->getRepository(VideoDetails::class);
-        dd($product);
+        $product = $entityManager->getRepository(VideoDetails::class)->findAll();
+        // dd($product);
 
         return $this->render('grid_display/index.html.twig', [
-            'controller_name' => 'GridDisplayController',
+            'videoDetails' => $product,
         ]);
     }
 }

@@ -1,20 +1,140 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello GridDisplayController!{% endblock %}
+{% block title %}Hello GridDisplayController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+	<div class="example-wrapper">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/bjorn/www/PlexWeb/src/Controller/GridDisplayController.php'|file_link(0) }}">src/Controller/GridDisplayController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/bjorn/www/PlexWeb/templates/grid_display/index.html.twig'|file_link(0) }}">templates/grid_display/index.html.twig</a></code></li>
-    </ul>
+		{% for video in videoDetails %}
+
+
+<div class="blueTable">
+	<div class="row">
+		<div class="col blueTable-th blueTable-thead blueTable-thead-th text-left" style="max-width: 65px;"></div>
+		<div class="col blueTable-th blueTable-thead blueTable-thead-th text-left">{{ video.title }}</div>
+		<div class="col blueTable-th blueTable-thead blueTable-thead-th text-end ">
+			<form action="process.php" method="post" id="formId">
+				<input type="hidden" name="id" value="52">
+
+				<input class="form-check-input  align-text-top" type="checkbox" value="yes" id="flexCheckDefault" name="doFile">
+				<button class="blueTable-thead blueTable-thead-th" id='Closebtn' type="submit" name="submit" value="update_file">Refresh</button>
+				<button class="blueTable-thead blueTable-thead-th" id='Closebtn' type="submit" name="submit" value="delete_file">Delete</button>
+			</form>
+		</div>
+	</div>
+
+	<div
+		class="row">
+		<!-- https://10.0.0.101/plex/images/plex/thumbnails/Pornhub/Amateur/Di_home/MMF/Real_Cheating_Wife_Fucking_Husband_With_Lover_Doggystyle_Without_Condom_While_She_Gives_Blowjob-ph60bb51b0f2eea.jpg -->
+		<div class="col" style="max-width:340px;">
+			<img src="/plex{{ video.thumbnail }}" onclick="popup('https://10.0.0.101/plex/video.php?id={{ video.id }}', 'videoinfo')" onerror="this.onerror=null;this.src='https://10.0.0.101/plex/images/default.jpg'">
+		</div>
+		<div class="col">
+			<div class="row blueTable-tr-even mt-2">
+				<div class="col-2 blueTable-tbody-td">
+					<span class="text-dark fs-5">
+						Title</span>
+				</div>
+				<div class="col-9 blueTable-tbody-td fs-5 editTitle">
+                {{ video.title }}
+				</div>
+			</div>
+			<div class="row  mt-2">
+				<div class="col-2 blueTable-tbody-td">
+					<span class="text-dark fs-5">
+						Artist</span>
+				</div>
+				<div class="col-9 blueTable-tbody-td fs-5 editArtist">
+				{{ video.artist }}
+				</div>
+			</div>
+			<div class="row blueTable-tr-even mt-2">
+				<div class="col-2 blueTable-tbody-td">
+					<span class="text-dark fs-5">
+						Genre</span>
+				</div>
+				<div class="col-9 blueTable-tbody-td fs-5 editGenre">
+					{{ video.genre }}
+				</div>
+			</div>
+			<div class="row  mt-2">
+				<div class="col-2 blueTable-tbody-td">
+					<span class="text-dark fs-5">
+						Studio</span>
+				</div>
+				<div class="col-9 blueTable-tbody-td fs-5 editStudio">
+					{{ video.studio }}
+				</div>
+			</div>
+			<div class="row blueTable-tr-even mt-2">
+				<div class="col-2 blueTable-tbody-td">
+					<span class="text-dark fs-5">
+						Keyword</span>
+				</div>
+				<div class="col-9 blueTable-tbody-td fs-5 editKeyword">
+					{{ video.keyword }}
+				</div>
+			</div>
+			<div class="row  mt-2">
+				<div class="col-2 blueTable-tbody-td">
+					<span class="text-dark fs-5">
+						Added</span>
+				</div>
+				<div class="col-9 blueTable-tbody-td fs-5 ">
+					2023-11-15 07:50:18
+				</div>
+			</div>
+			<div class="row blueTable-tr-even mt-2">
+				<div class="col-2 blueTable-tbody-td">
+					<span class="text-dark fs-5">
+						Fullpath</span>
+				</div>
+				<div class="col-9 blueTable-tbody-td fs-5 ">
+					{{ video.videopath }}
+				</div>
+			</div>
+			<div class="row  mt-2">
+				<div class="col-2 blueTable-tbody-td">
+					<span class="text-dark fs-5">
+						Duration</span>
+				</div>
+				<div class="col-9 blueTable-tbody-td fs-5 ">
+					00:07:23
+				</div>
+			</div>
+			<div class="row blueTable-tr-even mt-2">
+				<div class="col-2 blueTable-tbody-td">
+					<span class="text-dark fs-5"></span>
+				</div>
+				<div class="col-9 blueTable-tbody-td fs-5 ">
+					<div class="row">
+						<div class="col-3">Format</div>
+						<div class="col-3">BitRate</div>
+						<div class="col-2">Width</div>
+						<div class="col-2">Height</div>
+					</div>
+					<div class="row">
+						<div class="col-3 ">MPEG-4</div>
+						<div class="col-3 ">2.92 MB</div>
+						<div class="col-2 ">1920</div>
+						<div class="col-2 ">1080</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>
+
+
+
+
+		{% endfor %}
+
+	</div>
 {% endblock %}
+
